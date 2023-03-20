@@ -39,7 +39,55 @@ $show_complete_tasks = rand(0, 1);
         <div class="content">
             <section class="content__side">
                 <h2 class="content__side-heading">Проекты</h2>
+               <!-- Далее 2 массива: для проектов и для задач-->
+                <?php
+                $categories = [
+                 "incoming" => "Входящие",
+                 "studies"  => "Учеба",
+                 "job" => "Работа",
+                 "housework" => "Домашние дела",
+                 "auto"  => "Авто"
+                ];
 
+                $tasks = [
+                [
+                 "task" => "Собеседование в IT компании",
+                 "date of completion" => "01.12.2019",
+                 "category" => $categories["job"],
+                 "status" => false
+                ],
+                [
+                 "task" => "Выполнить тестовое задание",
+                 "date of completion" => "25.12.2019",
+                 "category" => $categories["job"],
+                 "status" => false
+                ],
+                [
+                 "task" => "Сделать задание первого раздела",
+                 "date of completion" => "21.12.2019",
+                 "category" => $categories["studies"],
+                 "status" => true
+                ],
+                [
+                 "task" => "Встреча с другом",
+                 "date of completion" => "22.12.2019",
+                 "category" => $categories["incoming"],
+                 "status" => false
+                ],
+                [
+                 "task" => "Купить корм для кота",
+                 "date of completion" => null,
+                 "category" => $categories["housework"],
+                 "status" => false
+                ],
+                [
+                 "task" => "Заказать пиццу",
+                 "date of completion" => null,
+                 "category" => $categories["housework"],
+                 "status" => false
+                ],
+            ];
+                ?>
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
                         <li class="main-navigation__list-item">
