@@ -52,48 +52,51 @@ $show_complete_tasks = rand(0, 1);
                 $tasks = [
                 [
                  "task" => "Собеседование в IT компании",
-                 "date of completion" => "01.12.2019",
+                 "date_of_completion" => "01.12.2019",
                  "category" => $categories["job"],
                  "status" => false
                 ],
                 [
                  "task" => "Выполнить тестовое задание",
-                 "date of completion" => "25.12.2019",
+                 "date_of_completion" => "25.12.2019",
                  "category" => $categories["job"],
                  "status" => false
                 ],
                 [
                  "task" => "Сделать задание первого раздела",
-                 "date of completion" => "21.12.2019",
+                 "date_of_completion" => "21.12.2019",
                  "category" => $categories["studies"],
                  "status" => true
                 ],
                 [
                  "task" => "Встреча с другом",
-                 "date of completion" => "22.12.2019",
+                 "date_of_completion" => "22.12.2019",
                  "category" => $categories["incoming"],
                  "status" => false
                 ],
                 [
                  "task" => "Купить корм для кота",
-                 "date of completion" => null,
+                 "date_of_completion" => null,
                  "category" => $categories["housework"],
                  "status" => false
                 ],
                 [
                  "task" => "Заказать пиццу",
-                 "date of completion" => null,
+                 "date_of_completion" => null,
                  "category" => $categories["housework"],
                  "status" => false
                 ],
             ];
                 ?>
                 <nav class="main-navigation">
+                    <!-- здесь с помощью цикла foreach заполняем список из массива $categories -->
                     <ul class="main-navigation__list">
-                        <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#">Название проекта</a>
+                    <?php foreach ($categories as $key => $category): ?>
+                        <li class="main-navigation__list-item--<?=$key;?>">
+                            <a class="main-navigation__list-item-link" href="#"><?=$category;?></a>
                             <span class="main-navigation__list-item-count">0</span>
                         </li>
+                        <?php endforeach; ?>
                     </ul>
                 </nav>
 
@@ -120,17 +123,20 @@ $show_complete_tasks = rand(0, 1);
 
                     <label class="checkbox">
                         <!--добавить сюда атрибут "checked", если переменная $show_complete_tasks равна единице-->
-                        <input class="checkbox__input visually-hidden show_completed" type="checkbox" <?php if ($show_complete_tasks): ?>checked<?php endif; ?>>
+                        <input class="checkbox__input visually-hidden show_completed" type="checkbox"
+                               <?php if ($show_complete_tasks): ?>checked<?php endif; ?>>
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
-
+                <!-- здесь заменяем все содержимое этой таблицы данными из массива задач $tasks. Если у задачи статус
+                «выполнен», то строке с этой задачей добавить класс "task--completed" -->
                 <table class="tasks">
-                    <tr class="tasks__item task">
+                    <?php foreach ($tasks as $key => $task): ?>
+                        <tr class="tasks__item task <?php if ($tasks["status"]= true): ?> task--completed <?php endif; ?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                                <span class="checkbox__text">Сделать главную страницу Дела в порядке</span>
+                                <span class="checkbox__text"><?=$task["task"];?></span>
                             </label>
                         </td>
 
@@ -138,9 +144,12 @@ $show_complete_tasks = rand(0, 1);
                             <a class="download-link" href="#">Home.psd</a>
                         </td>
 
-                        <td class="task__date"></td>
+                        <td class="task__date"><?=$task["date_of_completion"]?></td>
                     </tr>
-                    <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
+                        <td class="task__controls">
+                        </td>
+                    <?php endforeach; ?>
+                    <!--показывать следующий тег <tr>, если переменная $show_complete_tasks равна единице-->
                 <?php if($show_complete_tasks): ?>
                     <tr class="tasks__item task task--completed">
                         <td class="task__select">
@@ -153,7 +162,8 @@ $show_complete_tasks = rand(0, 1);
                         <td class="task__controls">
                         </td>
                     </tr>
-                <?php endif; ?>   
+                <?php endif; ?>
+
                 </table>
             </main>
         </div>
