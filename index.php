@@ -132,22 +132,25 @@ $show_complete_tasks = rand(0, 1);
                 «выполнен», то строке с этой задачей добавить класс "task--completed" -->
                 <table class="tasks">
                     <?php foreach ($tasks as $key => $task): ?>
-                        <tr class="tasks__item task <?php if ($tasks["status"]= true): ?> task--completed <?php endif; ?>">
+                    <?php if ($task["status"]&&$show_complete_tasks==0): continue; ?>
+                    <?php else: ?>
+                    <tr class="tasks__item task <?php if ($task["status"]): ?>task--completed<?php endif; ?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
                                 <span class="checkbox__text"><?=$task["task"];?></span>
                             </label>
                         </td>
-
-                        <td class="task__file">
+                            <td class="task__file">
                             <a class="download-link" href="#">Home.psd</a>
                         </td>
 
                         <td class="task__date"><?=$task["date_of_completion"]?></td>
-                    </tr>
+
                         <td class="task__controls">
                         </td>
+                    </tr>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                     <!--показывать следующий тег <tr>, если переменная $show_complete_tasks равна единице-->
                 <?php if($show_complete_tasks): ?>
