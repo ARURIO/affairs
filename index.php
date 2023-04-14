@@ -88,13 +88,25 @@ $show_complete_tasks = rand(0, 1);
                 ],
             ];
                 ?>
+                <!--функция, которая умеет подсчитывать количество задач в каждом проекте -->
+                <?php
+                function count_tasks ($tasks,$category) {
+                    $count=0;
+                    foreach ($tasks as $task) {
+                        if ($task["category"]==$category) {
+                            $count+=1;
+                        }
+                    }
+                    return $count;
+                }
+                ?>
                 <nav class="main-navigation">
                     <!-- здесь с помощью цикла foreach заполняем список из массива $categories -->
                     <ul class="main-navigation__list">
                     <?php foreach ($categories as $key => $category): ?>
                         <li class="main-navigation__list-item--<?=$key;?>">
                             <a class="main-navigation__list-item-link" href="#"><?=$category;?></a>
-                            <span class="main-navigation__list-item-count">0</span>
+                            <span class="main-navigation__list-item-count"><?= count_tasks($tasks,$category); ?></span>
                         </li>
                         <?php endforeach; ?>
                     </ul>
