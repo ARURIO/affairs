@@ -12,25 +12,25 @@
                 $tasks = [
                     [
                         "task" => "Собеседование в IT компании",
-                        "date_of_completion" => "01.12.2019",
+                        "date_of_completion" => "01.06.2023",
                         "category" => $categories["job"],
                         "status" => false
                     ],
                     [
                         "task" => "Выполнить тестовое задание",
-                        "date_of_completion" => "25.12.2019",
+                        "date_of_completion" => "25.12.2023",
                         "category" => $categories["job"],
                         "status" => false
                     ],
                     [
                         "task" => "Сделать задание первого раздела",
-                        "date_of_completion" => "21.12.2019",
+                        "date_of_completion" => "21.05.2023",
                         "category" => $categories["studies"],
                         "status" => true
                     ],
                     [
                         "task" => "Встреча с другом",
-                        "date_of_completion" => "22.12.2019",
+                        "date_of_completion" => "11.05.2023",
                         "category" => $categories["incoming"],
                         "status" => false
                     ],

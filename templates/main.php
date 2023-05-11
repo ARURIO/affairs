@@ -47,7 +47,10 @@
                     <?php foreach ($tasks as $key => $task): ?>
                         <?php if ($task["status"]&&$show_complete_tasks==0): continue; ?>
                         <?php else: ?>
-                            <tr class="tasks__item task <?php if ($task["status"]): ?>task--completed<?php endif; ?>">
+                    <!-- Вводим массив с функцией подсчета оставшихся часов до окончания задачи -->
+                            <?php $res = get_time_left(htmlspecialchars($task["date_of_completion"])) ?>
+                            <tr class="tasks__item task <?php if ($task["status"]): ?>task--completed<?php endif; ?>
+                              <?php if ($res[2] <= 24) : ?>task--important<?php endif; ?>">
                                 <td class="task__select">
                                     <label class="checkbox task__checkbox">
                                         <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
@@ -57,9 +60,8 @@
                                 <td class="task__file">
                                     <a class="download-link" href="#">Home.psd</a>
                                 </td>
-
-                                <td class="task__date"><?=$task["date_of_completion"]?></td>
-
+                                <td class="task__date">
+                                    <?= "$res[0] дней $res[1] часов"; ?></td>
                                 <td class="task__controls">
                                 </td>
                             </tr>
