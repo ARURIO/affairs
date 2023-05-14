@@ -26,7 +26,7 @@ function get_time_left($date) {
     date_default_timezone_set ('Europe/Moscow');
     $final_date = date_create($date);
     $cur_date = date_create("now");
-    $diff = date_diff($final_date, $cur_date);
+    $diff = date_diff($cur_date, $final_date);
     $format_diff = date_interval_format($diff, "%d %H %I");
     $arr = explode(" ", $format_diff);
 
@@ -38,5 +38,8 @@ function get_time_left($date) {
     $res[] = $days;
     $res[] = $hours;
     $res[] = $total_hours;
+    if ($final_date < $cur_date){
+        $res[2] = 0;
+    }
     return $res;
 }

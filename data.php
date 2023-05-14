@@ -30,7 +30,7 @@
                     ],
                     [
                         "task" => "Встреча с другом",
-                        "date_of_completion" => "11.05.2023",
+                        "date_of_completion" => "13.05.2023",
                         "category" => $categories["incoming"],
                         "status" => false
                     ],
