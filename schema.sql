@@ -31,7 +31,7 @@ CREATE TABLE tasks (
     FOREIGN KEY (id_categories) REFERENCES categories(id_categories)
 );
 
-CREATE INDEX u_id ON users(id_users);
+CREATE INDEX u_id N users(id_users);
 CREATE INDEX c_id ON categories(id_categories);
 CREATE INDEX t_id ON tasks(id_tasks);
 CREATE INDEX t_status ON tasks(status);
