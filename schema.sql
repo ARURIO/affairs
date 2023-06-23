@@ -14,6 +14,7 @@ CREATE TABLE users (
 );
 CREATE TABLE categories (
     id_categories INT AUTO_INCREMENT PRIMARY KEY,
+    character_code VARCHAR(128) UNIQUE,
     name_category VARCHAR(128),
     id_users INT,
     FOREIGN KEY (id_users) REFERENCES users(id_users)
