@@ -25,7 +25,7 @@
 
                 <div class="main-header__side-item user-menu">
                     <div class="user-menu__data">
-                        <p><?=$user_name; ?></p>
+                        <p><?=$user_name["user_name"]; ?></p>
 
                         <a href="#">Выйти</a>
                     </div>
@@ -42,7 +42,7 @@
 <footer class="main-footer">
     <div class="container">
         <div class="main-footer__copyright">
-            <p>© 2019, «Дела в порядке»</p>
+            <p>© 2023, «Дела в порядке»</p>
 
             <p>Веб-приложение для удобного ведения списка дел.</p>
         </div>

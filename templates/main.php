@@ -4,9 +4,9 @@
                 <nav class="main-navigation">
                     <!-- здесь с помощью цикла foreach заполняем список из массива $categories -->
                     <ul class="main-navigation__list">
-                    <?php foreach ($categories as $key => $category): ?>
-                        <li class="main-navigation__list-item--<?=$key;?>">
-                            <a class="main-navigation__list-item-link" href="#"><?= htmlspecialchars($category); ?></a>
+                    <?php foreach ($categories as $category): ?>
+                        <li class="main-navigation__list-item--<?=$category["character_code"];?>">
+                            <a class="main-navigation__list-item-link" href="#"><?= htmlspecialchars($category["name_category"]); ?></a>
                             <span class="main-navigation__list-item-count"><?= count_tasks($tasks,$category); ?></span>
                         </li>
                         <?php endforeach; ?>
@@ -44,7 +44,7 @@
                 <!-- здесь заменяем все содержимое этой таблицы данными из массива задач $tasks. Если у задачи статус
                 «выполнен», то строке с этой задачей добавить класс "task--completed" -->
                 <table class="tasks">
-                    <?php foreach ($tasks as $key => $task): ?>
+                    <?php foreach ($tasks as $task): ?>
                         <?php if ($task["status"]&&$show_complete_tasks==0): continue; ?>
                         <?php else: ?>
                     <!-- Вводим массив с функцией подсчета оставшихся часов до окончания задачи -->
@@ -54,11 +54,11 @@
                                 <td class="task__select">
                                     <label class="checkbox task__checkbox">
                                         <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                                        <span class="checkbox__text"><?= htmlspecialchars($task["task"]);?></span>
+                                        <span class="checkbox__text"><?= htmlspecialchars($task["name_tasks"]);?></span>
                                     </label>
                                 </td>
                                 <td class="task__file">
-                                    <a class="download-link" href="#">Home.psd</a>
+                                    <a class="download-link" href="#"><?= htmlspecialchars($task["file_link"]);?></a>
                                 </td>
                                 <td class="task__date">
                                     <?= $task["date_of_completion"]; ?></td>
