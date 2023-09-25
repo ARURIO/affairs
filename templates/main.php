@@ -1,13 +1,15 @@
 
-            <section class="content__side">
+
+                <section class="content__side">
                 <h2 class="content__side-heading">Проекты</h2>
                 <nav class="main-navigation">
-                    <!-- здесь с помощью цикла foreach заполняем список из массива $categories -->
+                    <!-- здесь с помощью цикла foreach заполняем список проектов из массива $categories -->
                     <ul class="main-navigation__list">
-                    <?php foreach ($categories as $category): ?>
-                        <li class="main-navigation__list-item--<?=$category["character_code"];?>">
-                            <a class="main-navigation__list-item-link" href="#"><?= htmlspecialchars($category["name_category"]); ?></a>
-                            <span class="main-navigation__list-item-count"><?= count_tasks($tasks,$category); ?></span>
+                    <?php foreach ($projects as $project): ?>
+                        <li class="main-navigation__list-item--<?=$project["character_code"];?>
+                        <?php if  ((int)$project_id == (int)$project['project_id']): ?> main-navigation__list-item--active <?php endif ?>">
+                            <a class="main-navigation__list-item-link" href="index.php?project_id=<?= $project['project_id']; ?>"><?= htmlspecialchars($project["project_name"]); ?></a>
+                            <span class="main-navigation__list-item-count"><?= count_tasks($countTasks,$project["project_name"]); ?></span>
                         </li>
                         <?php endforeach; ?>
                     </ul>

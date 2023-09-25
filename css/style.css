@@ -295,7 +295,7 @@ a:focus {
 
 .main-navigation__list-item-link {
   flex-grow: 1;
-  padding: 14px 8px;
+  padding: 4px 8px;
 
   font-weight: bold;
   color: inherit;

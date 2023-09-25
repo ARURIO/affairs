@@ -6,33 +6,34 @@ CREATE DATABASE affairs
 USE affairs;
 
 CREATE TABLE users (
-    id_users INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
     date_registration TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     email VARCHAR(128),
     user_name VARCHAR(128),
     user_password CHAR(255)
 );
-CREATE TABLE categories (
-    id_categories INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE projects (
+    project_id INT AUTO_INCREMENT PRIMARY KEY,
     character_code VARCHAR(128),
-    name_category VARCHAR(128),
-    id_users INT,
-    FOREIGN KEY (id_users) REFERENCES users(id_users)
+    project_name VARCHAR(128),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 CREATE TABLE tasks (
-    id_tasks INT AUTO_INCREMENT PRIMARY KEY,
+    task_id INT AUTO_INCREMENT PRIMARY KEY,
     date_of_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status TINYINT(1) NOT NULL DEFAULT 0,
     name_tasks VARCHAR(255) NOT NULL,
+    project_name VARCHAR(255) NOT NULL ,
     file_link VARCHAR(255),
     date_of_completion DATE,
-    id_users INT,
-    id_categories INT,
-    FOREIGN KEY (id_users) REFERENCES users(id_users),
-    FOREIGN KEY (id_categories) REFERENCES categories(id_categories)
+    user_id INT,
+    project_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (project_id) REFERENCES projects(project_id)
 );
 
-CREATE INDEX u_id ON users(id_users);
-CREATE INDEX c_id ON categories(id_categories);
-CREATE INDEX t_id ON tasks(id_tasks);
+CREATE INDEX u_id ON users(user_id);
+CREATE INDEX p_id ON projects(project_id);
+CREATE INDEX t_id ON tasks(task_id);
 CREATE INDEX t_status ON tasks(status);

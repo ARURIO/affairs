@@ -3,10 +3,10 @@
  *@param array $tasks, string название проекта
  *@return integer число задач для переданного проекта
  */
-function count_tasks ($tasks,$category) {
+function count_tasks ($countTasks,$project) {
                     $count=0;
-                    foreach ($tasks as $task) {
-                        if ($task["category"]==$category) {
+                    foreach ($countTasks as $countTask) {
+                        if ($countTask["project_name"]==$project) {
                             $count+=1;
                         }
                     }
