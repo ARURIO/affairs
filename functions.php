@@ -43,3 +43,31 @@ function get_time_left($date) {
     }
     return $res;
 }
+
+/*Проверяет существование проекта в базе данных
+ *@param  integer $project_id идентификатор проекта, который извлекается из параметра запроса
+ * @return true или false
+ */
+function projectExists($project_id, $con) {
+          //Используем подготовленный запрос для безопасности
+             $sql = "SELECT COUNT(*) FROM projects WHERE project_id = ?";
+              //Создаем подготовленное выражение
+             $stmt = mysqli_prepare($con, $sql);
+             if($stmt) {
+                    //Привязываем значение project_id к подготовленному выражению
+                      mysqli_stmt_bind_param($stmt,"i",$project_id);
+                    //выполняем запрос
+                    mysqli_stmt_execute($stmt);
+                    // Связывание результатов запроса с переменными
+                    mysqli_stmt_bind_result($stmt,$countProj);
+                    // Извлечение данных
+                    mysqli_stmt_fetch($stmt);
+                    // Если найдена хотя бы одно совпадение, возвращает true, иначе false
+                        return $countProj > 0;
+             }  else {
+                  //Обработка ошибки подготовленного запроса
+                  return false;
+             }
+}
+
+
